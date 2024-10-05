@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chargement du Site</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        #loader {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+        }
+
+        #background-text {
+            position: absolute;
+            font-size: 100px;
+            color: rgba(52, 152, 219, 0.1);
+            font-weight: bold;
+            text-align: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .dot {
+            width: 15px;
+            height: 15px;
+            background-color: #3498db;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+            margin: 5px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        #content {
+            display: none; /* Caché par défaut */
+            width: 100%;
+            height: 100vh; /* Utiliser 100% de la hauteur de la vue */
+            border: none; /* Retirer la bordure de l'iframe */
+        }
+    </style>
+</head>
+<body>
+
+    <div id="background-text">AKETUS</div>
+    
+    <div id="loader">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <p>Chargement...</p>
+    </div>
+
+    <iframe id="content" src="acceuil.html" allowfullscreen></iframe>
+
+    <script>
+        const iframe = document.getElementById('content');
+        iframe.onload = function() {
+            document.getElementById('loader').style.display = 'none';
+            iframe.style.display = 'block';
+        };
+    </script>
+
+</body>
+</html>
